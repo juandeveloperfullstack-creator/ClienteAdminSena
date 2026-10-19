@@ -3,7 +3,7 @@
 
         <a class="navbar-brand d-flex align-items-center fw-bold text-white" href="/">
             <img src="{{ asset('img/logo-sena.png') }}" alt="Logo SENA" width="40" height="40" class="me-2">
-            AdminSena
+            ClienteAdminSena
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
