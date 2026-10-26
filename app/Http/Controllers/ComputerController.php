@@ -58,13 +58,18 @@ class ComputerController extends Controller
         );
     }
 
-    // Enviamos los demás campos junto con la petición POST a la API
+    // 3. Enviamos los campos de texto junto con la petición POST
     $response = $http->post($url . '/computers', [
         'number' => $request->number,
         'brand'  => $request->brand,
     ]);
 
-    return redirect()->route('computer.index')->with('success', 'Computador creado correctamente');
+    // 4. Verificamos si la API respondió con éxito
+    if ($response->successful()) {
+        return redirect()->route('computer.list')->with('success', 'Computador creado correctamente');
+    }
+
+    return back()->withErrors(['error' => 'Error en la API: ' . $response->body()])->withInput();
 }
 
     public function edit($id)
