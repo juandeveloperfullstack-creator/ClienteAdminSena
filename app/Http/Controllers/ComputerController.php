@@ -42,13 +42,30 @@ class ComputerController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $url = env('URL_SERVER_API');
+{
+    $url = env('URL_SERVER_API');
 
-        Http::post($url . '/computers', $request->all());
+    // petición HTTP para adjuntar archivos
+    $http = Http::asMultipart();
 
-        return redirect()->route('computer.index')->with('success', 'Computadora creada correctamente.');
+    // Se verifica si el usuario seleccionó una imagen
+    if ($request->hasFile('urlFoto')) {
+        $file = $request->file('urlFoto');
+        $http->attach(
+            'urlFoto', // coincidir con el nombre que espera la API
+            file_get_contents($file->getRealPath()),
+            $file->getClientOriginalName()
+        );
     }
+
+    // Enviamos los demás campos junto con la petición POST a la API
+    $response = $http->post($url . '/computers', [
+        'number' => $request->number,
+        'brand'  => $request->brand,
+    ]);
+
+    return redirect()->route('computer.index')->with('success', 'Computador creado correctamente');
+}
 
     public function edit($id)
     {

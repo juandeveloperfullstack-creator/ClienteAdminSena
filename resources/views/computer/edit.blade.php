@@ -14,7 +14,7 @@
 
                 <!-- Formulario -->
                 <div class="card-body p-4 bg-white">
-                    <form action="{{ route('computer.update', $compu['id']) }}" method="POST">
+                    <form action="{{ route('computer.update', $compu['id']) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 
@@ -32,7 +32,7 @@
                         </div>
 
                         <!-- Marca -->
-                        <div class="mb-4">
+                        <div class="mb-3">
                             <label for="brand" class="form-label fw-semibold text-secondary small">
                                 Marca:
                             </label>
@@ -42,6 +42,28 @@
                                 </span>
                                 <input type="text" name="brand" id="brand" class="form-control border-start-0" value="{{ old('brand', $compu['brand']) }}" placeholder="Ej: Lenovo, HP, Dell" required>
                             </div>
+                        </div>
+
+                        <!--Campo de Imagen y previsualización de la actual -->
+                        <div class="mb-4">
+                            <label for="urlFoto" class="form-label fw-semibold text-secondary small">
+                                Imagen del Computador:
+                            </label>
+                            
+                            @if(!empty($compu['urlFoto']))
+                                <div class="mb-2">
+                                    <span class="d-block text-muted small mb-1">Imagen actual:</span>
+                                    <img src="{{ $compu['urlFoto'] }}" alt="Foto actual" width="100" class="rounded border">
+                                </div>
+                            @endif
+
+                            <div class="input-group">
+                                <span class="input-group-text bg-light text-muted border-end-0">
+                                    <i class="bi bi-image"></i>
+                                </span>
+                                <input type="file" name="urlFoto" id="urlFoto" class="form-control border-start-0" accept="image/*">
+                            </div>
+                            <small class="text-muted">Déjalo en blanco si no deseas cambiar la imagen.</small>
                         </div>
 
                         <!-- Botones de Acción -->

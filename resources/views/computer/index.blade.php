@@ -30,13 +30,11 @@
                 <td>{{ $computador['number'] }}</td>
                 <td>{{ $computador['brand'] }}</td>
                 <td>
-                    <img
-                        src="{{ asset('storage/images/' . $computador['urlFoto']) }}"
-                        alt="Imagen del producto"
-                        width="80"
-                        height="80"
-                        style="object-fit: cover; border-radius: 5px;"
-                    >
+                    @if(!empty($computador['urlFoto']))
+                    <img src="{{ $computador['urlFoto'] }}" alt="Foto equipo" width="80" class="rounded">
+                    @else
+                    <span class="text-muted">Sin imagen</span>
+                    @endif
                 </td>
                 <td>
                     <a href="{{ route('computer.show', $computador['id']) }}" class="btn btn-sm btn-success">
