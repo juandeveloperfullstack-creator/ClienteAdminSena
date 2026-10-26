@@ -9,48 +9,35 @@
 
                 <!-- Encabezado SENA -->
                 <div class="card-header text-white text-center py-3" style="background-color: #39a900;">
-                    <h4 class="mb-0 fw-bold">Editar Centro de Formación #{{ $center['id'] }}</h4>
+                    <h4 class="mb-0 fw-bold">Editar Área #{{ $area['id'] }}</h4>
                 </div>
 
                 <!-- Formulario -->
                 <div class="card-body p-4 bg-white">
-                    <form action="{{ route('training_center.update', $center['id']) }}" method="POST">
+                    <form action="{{ route('area.update', $area['id']) }}" method="POST">
                         @csrf
                         @method('PUT')
-
-                        <!-- Nombre del Centro -->
-                        <div class="mb-3">
-                            <label for="name" class="form-label fw-semibold text-secondary small">
-                                Nombre del Centro:
-                            </label>
-                            <div class="input-group">
-                                <span class="input-group-text bg-light text-muted border-end-0">
-                                    <i class="bi bi-building"></i>
-                                </span>
-                                <input type="text" name="name" id="name" class="form-control border-start-0" value="{{ old('name', $center['name']) }}" placeholder="Ej: Centro de Comercio y Servicios" required>
-                            </div>
-                        </div>
-
-                        <!-- Ubicación -->
+    
+                        <!-- Nombre del Área -->
                         <div class="mb-4">
-                            <label for="location" class="form-label fw-semibold text-secondary small">
-                                Ubicación:
+                            <label for="name" class="form-label fw-semibold text-secondary small">
+                                Nombre del Área:
                             </label>
                             <div class="input-group">
                                 <span class="input-group-text bg-light text-muted border-end-0">
-                                    <i class="bi bi-geo-alt-fill"></i>
+                                    <i class="bi bi-layers-fill"></i>
                                 </span>
-                                <input type="text" name="location" id="location" class="form-control border-start-0" value="{{ old('location', $center['location']) }}" placeholder="Ej: Popayán, Cauca" required>
+                                <input type="text" name="name" id="name" class="form-control border-start-0" value="{{ old('name', $area['name']) }}" placeholder="Ej: Informática" required>
                             </div>
                         </div>
 
                         <!-- Botones de Acción -->
                         <div class="d-flex justify-content-between align-items-center pt-2">
-                            <a href="{{ route('training_center.list') }}" class="btn btn-outline-secondary px-4 fw-medium">
+                            <a href="{{ route('area.index') }}" class="btn btn-outline-secondary px-4 fw-medium">
                                 Cancelar
                             </a>
                             <button type="submit" class="btn text-white px-4 fw-bold" style="background-color: #39a900;">
-                                Actualizar Centro
+                                Actualizar Área
                             </button>
                         </div>
 
